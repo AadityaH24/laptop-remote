@@ -16,6 +16,14 @@ laptop-remote\
   state.json         paired devices (generated, secrets — do not share)
   audit.log          every action, with device name and timestamp
 ```
+## Features
+
+| Media Controls | Mouse Controls |
+|:---:|:---:|
+| <img width="280" src="https://github.com/user-attachments/assets/09853697-97bf-4648-beaa-57c9d98b259e" /> | <img width="280" src="https://github.com/user-attachments/assets/8047c47b-5f25-416d-9fb0-44113507d7d5" /> |
+| **System Controls** | **App Switcher** |
+| <img width="280" src="https://github.com/user-attachments/assets/a6d33be0-aa9b-4c7d-87be-b4ac3f1ced34" /> | <img width="280" src="https://github.com/user-attachments/assets/6ad9f40f-9d5b-41e7-b4c3-9a98eca288bc" /> |
+
 
 ---
 
