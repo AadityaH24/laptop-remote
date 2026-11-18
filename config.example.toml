@@ -1,0 +1,116 @@
+# ---------------------------------------------------------------------------
+# Laptop Remote configuration
+# Edit this file, then restart the server.
+# ---------------------------------------------------------------------------
+
+[server]
+# Port to listen on. `tailscale serve` proxies to it, so only change this if
+# something else already uses 8765.
+port = 8765 # DEFAULT PORT
+
+# Serve the app under a path instead of the root. Handy when you want several
+# services behind one hostname, e.g.
+#   tailscale serve --bg --set-path /laptop-remote 8765
+# Leave as "" to serve at the root.
+base_path = "/laptop-remote"
+
+[security]
+# Require a PIN to pair a new device. Devices stay paired until you revoke them.
+# Set to false only while developing on the laptop itself.
+pin_enabled = true
+
+# Fixed pairing PIN. Leave this commented out for a random PIN on every launch.
+# A fixed PIN never expires, so treat it like a password: anyone who can reach
+# this port and knows the PIN can pair. Six wrong attempts still lock pairing
+# for five minutes. Your Tailscale ACL is the real gate, not this.
+pin = "" # ADD PIN
+
+# Minutes a pairing window stays open after each failed attempt resets it.
+pairing_window_minutes = 10
+
+# Refuse to bind to a LAN address unless the connected Wi-Fi SSID is in this
+# list. Has no effect in the default (loopback) mode, which is the safe one.
+allowed_ssids = ["hemant_interfave_5GHz"]
+
+# Tailnet logins allowed to use the remote, when tailscale identity headers are
+# present. Leave empty to skip the check. Add your tailnet login address here if
+# you want a second lock beyond tailnet membership.
+allowed_logins = []
+
+# ---------------------------------------------------------------------------
+# Custom buttons. Each entry becomes a button in the app's launcher grid.
+# Keys are stable ids, values are the display name.
+# The command is launched detached; use full paths for anything not on PATH.
+# ---------------------------------------------------------------------------
+
+[apps.spotify]
+label = "Spotify"
+command = "explorer.exe shell:AppsFolder\<>PATH<>"
+[apps.explorer]
+label = "Files"
+command = "explorer.exe"
+
+[apps.notepad]
+label = "Notepad"
+command = "notepad.exe"
+
+[apps.terminal]
+label = "Terminal"
+command = "wt.exe"
+
+[apps.stremio]
+label = "Stremio"
+command = '"C:\Users\Stremio-4\stremio.exe"'
+
+# Example of a shell command (runs via cmd /c, hidden window):
+# [apps.focus]
+# label = "Focus mode"
+# command = 'cmd /c start "" /min "C:\\Tools\\focus.bat"'
+
+# ---------------------------------------------------------------------------
+# VLC (optional). VLC 3 has no Windows media session, so the app drives its
+# window directly: play/pause, next/prev, stop and ±10s work out of the box.
+# For the seek bar, turn on VLC's web interface once:
+#   Tools > Preferences > All > Interface > Main interfaces > tick "Web"
+#   then Interface > Main interfaces > Lua > Lua HTTP > set a password
+# and put the same port / password here. Leave the password empty to disable
+# the HTTP path; the app then falls back to window control.
+# ---------------------------------------------------------------------------
+[vlc]
+enabled = true
+http_port = 8080
+http_password = ""
+
+# ---------------------------------------------------------------------------
+# Deck tiles. Tapping a tile swaps the widgets below it. Delete this block to
+# use the built-in deck (Media, Mouse, System, Apps).
+#
+# Widget types: nowplaying, volume, brightness, lock, audio_out, apps, windows,
+#               touchpad, clickbar, shortcuts, typebar
+# Unknown types are skipped and reported in the console, never shown as errors.
+# ---------------------------------------------------------------------------
+
+[[deck]]
+id = "media"
+label = "Media"
+widgets = ["nowplaying", "volume"]
+
+[[deck]]
+id = "mouse"
+label = "Mouse"
+widgets = ["touchpad", "clickbar", "shortcuts", "typebar"]
+
+[[deck]]
+id = "system"
+label = "System"
+widgets = ["volume", "brightness", "lock", "audio_out"]
+
+[[deck]]
+id = "apps"
+label = "Apps"
+widgets = ["apps", "windows"]
+
+# Widget options (optional):
+# [widgets.touchpad]
+# sensitivity = 1.0
+# natural_scroll = true
