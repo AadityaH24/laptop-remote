@@ -1,0 +1,11 @@
+# Optional. Adds the "now playing" card (title, artist, playback state, artwork).
+# If these fail to install on your Python version, everything else still works —
+# media buttons fall back to blind media-key presses.
+winrt-runtime>=2.3.0
+winrt-Windows.Foundation>=2.3.0
+winrt-Windows.Foundation.Collections>=2.3.0
+winrt-Windows.Media.Control>=2.3.0
+winrt-Windows.Storage.Streams>=2.3.0
+
+# Optional. Prints a scannable QR code on startup so you don't type the URL + PIN.
+qrcode>=7.4.2
